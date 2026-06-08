@@ -43,15 +43,18 @@
     }
 
     /* Navbar Flotante Glassmorphism */
-    header {
+   header {
       position: sticky;
       top: 0;
       z-index: 100;
+      
+      /* 1. Reemplazamos el color plano por la imagen local */
       background-image: linear-gradient(rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0.65)), url('peninsular.jfif');
       background-size: cover;
       background-position: center;
+      
       border-bottom: 1px solid rgba(226, 232, 240, 0.8);
-      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05); /* Sombra elegante inferior */
       transition: all 0.3s ease;
     }
 
@@ -88,10 +91,9 @@
       display: flex;
       gap: 6px;
       flex-wrap: wrap;
-      align-items: center;
     }
 
-    nav a, .dropdown-nav > span {
+    nav a {
       text-decoration: none;
       color: var(--muted);
       background: transparent;
@@ -100,52 +102,10 @@
       font-size: 0.85rem;
       font-weight: 600;
       transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-      cursor: pointer;
     }
 
-    nav a:hover, .dropdown-nav:hover > span {
+    nav a:hover {
       background: var(--pcp-light);
-      color: var(--pcp-blue);
-    }
-
-    /* Estilos del Menú Desplegables de Navegación */
-    .dropdown-nav {
-      position: relative;
-      display: inline-block;
-    }
-
-    .dropdown-menu {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      transform: translateX(-50%) translateY(10px);
-      background-color: #ffffff;
-      min-width: 320px;
-      box-shadow: var(--shadow-hover);
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      padding: 8px 0;
-      z-index: 200;
-    }
-
-    .dropdown-nav:hover .dropdown-menu {
-      display: block;
-    }
-
-    .dropdown-menu a {
-      display: block;
-      color: var(--text);
-      padding: 10px 20px;
-      border-radius: 0;
-      font-size: 0.82rem;
-      font-weight: 500;
-      text-align: left;
-      transition: background 0.2s ease;
-    }
-
-    .dropdown-menu a:hover {
-      background-color: var(--pcp-light);
       color: var(--pcp-blue);
     }
 
@@ -285,22 +245,17 @@
     tr:last-child td { border-bottom: none; }
     tr:hover td { background-color: #f8fafc; }
 
-    .diagram-container {
-      background: #f8fafc;
-      border: 1px solid var(--border);
+    /* Espacio para Diagramas e Imágenes */
+    .diagram-placeholder {
+      background: #ffffff;
+      border: 2px dashed #cbd5e1;
       border-radius: 20px;
-      padding: 24px;
+      padding: 60px 20px;
       text-align: center;
-      margin-top: 16px;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .diagram-container img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 12px;
-      box-shadow: var(--shadow-md);
-      background-color: white;
+      margin-bottom: 24px;
+      color: #94a3b8;
+      font-weight: 600;
+      font-size: 0.95rem;
     }
 
     .fiscal-grid {
@@ -364,12 +319,12 @@
       .grid-two { grid-template-columns: 1fr; gap: 20px; }
       .topbar { justify-content: center; padding: 14px 0; gap: 12px; }
       nav { justify-content: center; }
-      .dropdown-menu { position: static; transform: none; box-shadow: none; width: 100%; border: none; }
     }
   </style>
 </head>
 <body>
 
+  <!-- NAVEGACIÓN SUPERIOR -->
   <header>
     <div class="wrap topbar">
       <div class="brand">
@@ -378,19 +333,8 @@
       </div>
       <nav>
         <a href="#inicio">Inicio</a>
-        
-        <div class="dropdown-nav">
-          <span>Contenido ▼</span>
-          <div class="dropdown-menu">
-            <a href="#politica-1">Política 1: Planificación de Requerimientos</a>
-            <a href="#politica-2-5">Políticas 2 - 5: Techos y Comité Evaluador</a>
-            <a href="#politica-6-8">Políticas 6 - 8: Expedientes y Contratos</a>
-            <a href="#politica-9-11">Políticas 9 - 11: Firmas y Validación</a>
-            <a href="#politica-12-13">Políticas 12 - 13: Ciclo de Pagos y SURF</a>
-            <a href="#politica-14-16">Políticas 14 - 16: Cotización de Bienes</a>
-          </div>
-        </div>
-
+        <a href="#contenido">Contenido</a>
+        <a href="#diagramas">Diagramas de Flujo</a>
         <a href="#tabuladores">Tabuladores</a>
         <a href="#facturacion">Facturación</a>
         <a href="#anexos">Formatos Anexos</a>
@@ -398,6 +342,7 @@
     </div>
   </header>
 
+  <!-- SECCIÓN: INICIO -->
   <section class="hero" id="inicio">
     <div class="wrap">
       <div class="hero-card">
@@ -421,230 +366,263 @@
             </div>
           </div>
         </div>
+
+        <details style="margin-top: 24px;">
+          <summary>Ver Entradas y Salidas del Proceso</summary>
+          <div class="dropdown-content">
+            <div class="grid-two">
+              <div>
+                <strong>📥 Entradas del proceso:</strong>
+                <ul style="padding-left: 20px; font-size: 0.88rem; margin: 8px 0; color: var(--muted); display: flex; flex-direction: column; gap: 4px;">
+                  <li>Documentación del proyecto (propuesta, contrato con donante, etc.)</li>
+                  <li>Términos de referencia (TDR)</li>
+                  <li>Convocatoria para selección de consultores</li>
+                  <li>Invitación a cuando menos 3 CPR</li>
+                  <li>Propuesta técnico-económica por parte de los CPR</li>
+                  <li>Cotizaciones de bienes y servicios</li>
+                  <li>Acta de evaluación de CPR, fallo o adjudicación directa</li>
+                  <li>Sistema de Solicitud Única de Recursos Financieros (SURF)</li>
+                  <li>Carta satisfacción de las actividades y entregables</li>
+                  <li>Base de datos de control de contratos</li>
+                </ul>
+              </div>
+              <div>
+                <strong>📤 Salidas del proceso:</strong>
+                <ul style="padding-left: 20px; font-size: 0.88rem; margin: 8px 0; color: var(--muted); display: flex; flex-direction: column; gap: 4px;">
+                  <li>Contrato/convenio con el PRO seleccionado o adjudicado </li>
+                  <li>Compra de un bien o servicio </li>
+                  <li>Productos entregados y actividades realizadas </li>
+                  <li>Pago de bien o servicio </li>
+                </ul>
+              </div>
+            </div>
+            <div class="info-box" style="margin-top: 14px; background: #f8fafc; color: var(--muted); border-color: var(--border); font-size: 0.8rem;">
+              ⚖️ <strong>Nota Legal Supletoria:</strong> Se aplicarán de manera supletoria los criterios que establece la Ley de Adquisiciones Arrendamientos y Servicios del Sector Público .
+            </div>
+          </div>
+        </details>
       </div>
     </div>
   </section>
 
+  <!-- SECCIÓN: CONTENIDO -->
   <main class="wrap">
     <section id="contenido">
       <h2>Políticas Operativas</h2>
 
-      <div class="step-card" id="politica-1">
+      <!-- Política 1 -->
+      <div class="step-card">
         <span class="badge">Política 1 · Planificación de Requerimientos</span>
         <div class="grid-two">
           <div>
             <h3>Elaboración de TDR y Documentación Básica del Consultor</h3>
-            <p style="color: var(--muted); margin-top: 0;">El responsable del proyecto o enlace externo elabora los términos de referencia (TDR) para contratación de consultorías, profesionista y adquisición de bienes muebles, con base en el formato anexo y a partir de los objetivos y resultados esperados para cada proyecto, en concordancia con el presupuesto aprobado (se sugiere indicar moneda nacional). Cada TDR deberá incluir criterios de evaluación de la consultoría, así como las condiciones de pago.</p>
+            <p style="color: var(--muted); margin-top: 0;">El <strong>RP</strong> o <strong>EE</strong> elabora los términos de referencia (TDR) para contratación de consultorías, PRO y adquisición de bienes muebles, con base en el formato anexo y a partir de los objetivos y resultados esperados para cada proyecto, en concordancia con el presupuesto aprobado (se sugiere indicar moneda nacional) . Cada TDR deberá incluir criterios de evaluación de la consultoría, así como las condiciones de pago .</p>
             
             <div class="alert-box">
               <strong>💵 Regla de Exención Financiera:</strong><br>
-              Montos menores a $50,000 no necesitan TDR, ni contrato, siempre y cuando se cuente con una propuesta técnico-económica completa para el caso de prestación de servicios profesionales o, de una cotización para el caso de compra de algún bien.
+              Montos menores a $50,000 no necesitan TDR, ni contrato, siempre y cuando se cuente con una propuesta técnico-económica completa para el caso de prestación de servicios profesionales o, de una cotización para el caso de compra de algún bien .
             </div>
-
-            <details style="margin-top: 14px;">
-              <summary>🗺️ Ver Diagrama de Flujo: Contratación de Prestadores de Servicios</summary>
-              <div class="dropdown-content">
-                <div class="diagram-container">
-                  <img src="diagrama_pag6.jpg" alt="Flujograma de Contratación Página 6">
-                </div>
-              </div>
-            </details>
           </div>
           <div>
             <details open>
-              <summary>📋 Lista de Documentación Obligatoria (Candidato a Profesionista)</summary>
+              <summary>📋 Lista de Documentación Obligatoria (CPR)</summary>
               <div class="dropdown-content" style="font-size: 0.88rem; color: var(--muted); display: flex; flex-direction: column; gap: 4px;">
-                <p style="margin: 0;">Los TDR especificarán que el candidato a profesionista deberá anexar la siguiente documentación:</p>
-                <p style="margin: 0;">a. Curriculum Vitae o portafolio profesional.</p>
-                <p style="margin: 0;">b. Acta constitutiva en caso de persona moral.</p>
-                <p style="margin: 0;">c. Poder del representative legal en caso de persona moral.</p>
-                <p style="margin: 0;">d. Constancia de situación fiscal con una antigüedad menor a tres meses.</p>
-                <p style="margin: 0;">e. Opinión de cumplimiento fiscal con una antigüedad menor a tres meses.</p>
-                <p style="margin: 0;">f. Identificación oficial vigente del candidato a profesionista o del representante legal.</p>
-                <p style="margin: 0;">g. CURP del candidato a profesionista.</p>
-                <p style="margin: 0;">h. Comprobante de domicilio con una antigüedad menor a tres meses.</p>
-                <p style="margin: 0;">i. Carátula de estado de cuenta bancaria a la que se realizarán los pagos correspondientes.</p>
-                <p style="margin: 0;">j. Al menos dos cartas de recomendación o referencias profesionales.</p>
-                <p style="margin: 0;">k. Propuesta técnico-económica, la cual debe contemplar los gastos de viaje, viáticos y hospedaje.</p>
+                <p style="margin: 0;">Los TDR especificarán que el CPR deberá anexar la siguiente documentación :</p>
+                <p style="margin: 0;">a. Curriculum Vitae o portafolio profesional .</p>
+                <p style="margin: 0;">b. Acta constitutiva en caso de persona moral .</p>
+                <p style="margin: 0;">c. Poder del representante legal en caso de persona moral .</p>
+                <p style="margin: 0;">d. Constancia de situación fiscal con una antigüedad menor a tres meses .</p>
+                <p style="margin: 0;">e. Opinión de cumplimiento fiscal con una antigüedad menor a tres meses .</p>
+                <p style="margin: 0;">f. Identificación oficial vigente del CPR o del representante legal .</p>
+                <p style="margin: 0;">g. CURP del CPR .</p>
+                <p style="margin: 0;">h. Comprobante de domicilio con una antigüedad menor a tres meses .</p>
+                <p style="margin: 0;">i. Carátula de estado de cuenta bancaria a la que se realizarán los pagos correspondientes .</p>
+                <p style="margin: 0;">j. Al menos dos cartas de recomendación o referencias profesionales .</p>
+                <p style="margin: 0;">k. Propuesta técnico-económica, la cual debe contemplar los gastos de viaje, viáticos y hospedaje .</p>
               </div>
             </details>
           </div>
         </div>
       </div>
 
+      <!-- Protocolo Opinión Negativa -->
       <div style="margin-top: -12px; margin-bottom: 28px; background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 28px; box-shadow: var(--shadow-md);">
         <h4 style="color: #991b1b; font-size: 1rem;">⚠️ Protocolo ante Opinión de Cumplimiento Negativa</h4>
-        <p style="font-size: 0.9rem; margin: 0 0 12px 0; color: var(--muted);">En caso de que la opinión de cumplimiento fiscal del candidato a profesionista sea en sentido negativo, la contratación podrá continuar siempre y cuando:</p>
+        <p style="font-size: 0.9rem; margin: 0 0 12px 0; color: var(--muted);">En caso de que la opinión de cumplimiento fiscal del CPR sea en sentido negativo, la contratación podrá continuar siempre y cuando :</p>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px;">
           <div class="alert-box" style="margin-top:0; background: #fef2f2; border-color: #fca5a5; color: #991b1b; font-size: 0.85rem;">
-            <strong>1. Restricción Operaciones Simuladas:</strong> No se encuentren dentro de los supuestos que señala el artículo 69 y 69b del CFF vigentes (empresas con operaciones simuladas).
+            <strong>1. Restricción Operaciones Simuladas:</strong> No se encuentren dentro de los supuestos que señala el artículo 69 y 69b del CFF vigentes (empresas con operaciones simuladas) .
           </div>
           <div class="alert-box" style="margin-top:0; font-size: 0.85rem;">
-            <strong>2. Retraso de Declaraciones:</strong> Que no tengan un atraso en la presentación de sus declaraciones fiscales por más de 4 meses.
+            <strong>2. Retraso de Declaraciones:</strong> Que no tengan un atraso en la presentación de sus declaraciones fiscales por más de 4 meses .
           </div>
         </div>
         <div class="info-box" style="margin-top: 14px; font-size: 0.85rem; background: #fdf2f8; color: #9d174d; border-color: #fbcfe8;">
-          📌 <strong>Gastos por Excepción:</strong> En caso de excepción, los gastos de viaje, viáticos y hospedaje se pagarán al profesionista siempre que se encuentren debidamente justificados dentro de las cláusulas del contrato.
+          📌 <strong>Gastos por Excepción:</strong> En caso de excepción, los gastos de viaje, viáticos y hospedaje se pagarán al PRO siempre que se encuentren debidamente justificados dentro de las cláusulas del contrato .
         </div>
       </div>
 
-      <div class="step-card" id="politica-2-5">
+      <!-- Políticas 2, 3, 4, 5 -->
+      <div class="step-card">
         <span class="badge">Políticas 2 - 5 · Aprobaciones y Comité Evaluador</span>
         <div class="grid-two">
           <div>
             <h3>Filtros de Techos Presupuestales y Selección</h3>
-            <p style="color: var(--muted); margin-top:0;"><strong>2. (coordinador de administración, director ejecutivo, directora de programas):</strong> Para equipos con un costo mayor a $50,000 y contrataciones que tengan un techo presupuestal igual o mayor a $150,000 pesos, se enviarán por correo los TDR al director ejecutivo para su revisión y firma de aprobación en un plazo no mayor a 5 días hábiles. Los TDR correspondientes a Proyectos administrados deberán ser aprobados por el enlace externo y/o responsable del proyecto.</p>
-            <p style="color: var(--muted);"><strong>3. (coordinadora de desarrollo institucional, enlace externo):</strong> En su caso, publica la convocatoria en redes sociales durante 5 a 7 días hábiles, anexando los TDR y el formato para la presentación de propuestas técnico-económicas.</p>
-            <p style="color: var(--muted);"><strong>4. (directora de programas, responsable del proyecto, enlace externo):</strong> En su caso, invita a cuando menos a 3 candidatos que posean la experiencia, perfil y capacidad profesional probada para presentar una propuesta técnico-económica.</p>
+            <p style="color: var(--muted); margin-top:0;"><strong>2. (CA, DE, DP):</strong> Para equipos con un costo mayor a $50,000 y contrataciones que tengan un techo presupuestal igual o mayor a $150,000 pesos, se enviarán por correo los TDR al DE para su revisión y firma de aprobación en un plazo no mayor a 5 días hábiles . Los TDR correspondientes a Proyectos administrados deberán ser aprobados por el EE y/o RP .</p>
+            <p style="color: var(--muted);"><strong>3. (CDI, EE):</strong> En su caso, publica la convocatoria en redes sociales durante 5 a 7 días hábiles, anexando los TDR y el formato para la presentación de propuestas técnico-económicas .</p>
+            <p style="color: var(--muted);"><strong>4. (DP, RP, EE):</strong> En su caso, invita a cuando menos a 3 candidatos que posean la experiencia, perfil y capacidad profesional probada para presentar una propuesta técnico-económica .</p>
           </div>
           <div>
             <div class="info-box" style="margin-top: 0;">
-              <strong>👥 5. Comité Evaluador (director ejecutivo, directora de programas, coordinador de administración, enlace externo, responsable del proyecto):</strong><br>
-              El comité (integrado por 3 personas) revisa y evalúa las propuestas para seleccionar a través de un <em>Acta de evaluación de candidatos, fallo o adjudicación directa</em>. Se tendrán <strong>3 días hábiles</strong> una vez terminado el plazo señalado en la política 3 para dicha selección.
+              <strong>👥 5. Comité Evaluador (DE, DP, CA, EE, RP):</strong><br>
+              El comité (integrado por 3 personas) revisa y evalúa las propuestas para seleccionar a través de un <em>Acta de evaluación de candidatos, fallo o adjudicación directa</em> . Se tendrán <strong>3 días hábiles</strong> una vez terminado el plazo señalado en la política 3 para dicha selección .
               <hr style="border:0; border-top: 1px dashed var(--info-border); margin: 10px 0;">
               <strong>Adjudicación Directa:</strong><br>
-              • Debe estar debidamente justificada en el Acta.<br>
-              • Deberá ser revisada y firmada de forma obligatoria por <strong>directora de programas y director ejecutivo</strong>.<br>
-              • El monto máximo para una adjudicación directa será de <strong>$200,000 pesos</strong>.
+              • Debe estar debidamente justificada en el Acta .<br>
+              • Deberá ser revisada y firmada de forma obligatoria por <strong>DP y DE</strong> .<br>
+              • El monto máximo para una adjudicación directa será de <strong>$200,000 pesos</strong> .
             </div>
           </div>
         </div>
       </div>
 
-      <div class="step-card" id="politica-6-8">
+      <!-- Políticas 6, 7, 8 -->
+      <div class="step-card">
         <span class="badge">Políticas 6 - 8 · Expediente y Contrato</span>
         <div class="grid-two">
           <div>
             <h3>Integración de Expedientes y Tiempos de Redacción</h3>
-            <p style="color: var(--muted); margin-top:0;"><strong>6. (responsable del proyecto, enlace externo):</strong> Integra y, en el caso del enlace externo, envía a PCP al correo electrónico convenido, un expediente del concurso o adjudicación, que contendrá:
-              <br>• a. TDR con su autorización.
-              <br>• b. En el caso de los supuestos señalados en la política operativa 2, se tiene que incluir el TDR con la autorización de director ejecutivo.
-              <br>• c. Propuestas técnico-económicas incluyendo la documentación solicitada en el TDR.
-              <br>• d. Cuadro de evaluación de candidatos.
-              <br>• e. Acta de evaluación de candidatos, fallo o adjudicación.
+            <p style="color: var(--muted); margin-top:0;"><strong>6. (RP, EE):</strong> Integra y, en el caso del EE, envía a PCP al correo electrónico convenido, un expediente del concurso o adjudicación, que contendrá :
+              <br>• a. TDR con su autorización .
+              <br>• b. En el caso de los supuestos señalados en la política operativa 2, se tiene que incluir el TDR con la autorización de DE .
+              <br>• c. Propuestas técnico-económicas incluyendo la documentación solicitada en el TDR .
+              <br>• d. Cuadro de evaluación de candidatos .
+              <br>• e. Acta de evaluación de candidatos, fallo o adjudicación .
             </p>
           </div>
           <div>
             <div class="alert-box" style="margin-top: 0; background: #f8fafc; border-color: var(--border); color: var(--text);">
-              <strong>7. Resguardo (coordinador de administración):</strong> Valida, archiva y resguarda el expediente del concurso o adjudicación.
+              <strong>7. Resguardo (CA):</strong> Valida, archiva y resguarda el expediente del concurso o adjudicación .
             </div>
             <div class="info-box">
-              <strong>✒️ 8. Elaboración (responsable del proyecto, coordinador de proyectos, coordinador de administración):</strong><br>
-              Elabora contrato correspondiente con base en los formatos respectivos anexos. Una vez que se cuenta con toda la documentación y se tiene seleccionada la mejor propuesta, se tienen <strong>tres días hábiles</strong> para la elaboración del contrato.
-              <br><small style="color: var(--muted); display:block; margin-top: 6px;">Nomenclatura oficial: <code>PCP-núm del contrato-fecha de inicio de contrato</code>.</small>
+              <strong>✒️ 8. Elaboración (RP, CP, CA):</strong><br>
+              Elabora contrato correspondiente con base en los formatos respectivos anexos . Una vez que se cuenta con toda la documentación y se tiene seleccionada la mejor propuesta, se tienen <strong>tres días hábiles</strong> para la elaboración del contrato .
+              <br><small style="color: var(--muted); display:block; margin-top: 6px;">Nomenclatura oficial: <code>PCP-núm del contrato-fecha de inicio de contrato</code> .</small>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="step-card" id="politica-9-11">
+      <!-- Políticas 9, 10, 11 -->
+      <div class="step-card">
         <span class="badge">Políticas 9 - 11 · Firmas y Base de Datos</span>
         <div class="grid-two">
           <div>
             <h3>Orden Jerárquico de Firmas y Validación</h3>
-            <p style="color: var(--muted); margin-top:0;"><strong>9. (directora de programas, coordinador de administración, director ejecutivo, profesionista):</strong> Revisa y firma contrato en el siguiente orden estricto:
-              <br><strong style="color: var(--pcp-blue)">a) directora de programas → b) coordinador de administración → c) profesionista → d) director ejecutivo</strong>.
-              <br>• Los contratos menores a $50,000 podrán ir firmados solo por directora de programas o coordinador de administración.
-              <br>• Todo contrato mayor a $150,000.00 pesos deberá ser firmado por el director ejecutivo.
-              <br>• directora de programas y coordinador de administración tienen 2 días hábiles para liberar contrato firmado una vez recibido. Para la firma de director ejecutivo se tienen 5 días hábiles.
+            <p style="color: var(--muted); margin-top:0;"><strong>9. (DP, CA, DE, PRO):</strong> Revisa y firma contrato en el siguiente orden estricto :
+              <br><strong style="color: var(--pcp-blue)">a) DP → b) CA → c) PRO → d) DE</strong> .
+              <br>• Los contratos menores a $50,000 podrán ir firmados solo por DP o CA .
+              <br>• Todo contrato mayor a $150,000.00 pesos deberá ser firmado por el DE .
+              <br>• DP y CA tienen 2 días hábiles para liberar contrato firmado una vez recibido. Para la firma de DE se tienen 5 días hábiles .
             </p>
-
-            <details style="margin-top: 14px;">
-              <summary>🗺️ Ver Diagrama de Flujo: Proceso de Firmas y Control</summary>
-              <div class="dropdown-content">
-                <div class="diagram-container">
-                  <img src="diagrama_pag6.jpg" alt="Flujograma de Contratación Página 6">
-                </div>
-              </div>
-            </details>
-
             <div class="info-box" style="background: #f8fafc; border-color: var(--border); color: var(--text);">
-              <strong>📍 10. Firmas Autógrafas (directora de programas, coordinador de proyectos, responsable del proyecto, enlace externo, coordinador de administración):</strong> Se requiere la firma autógrafa y presencial en el domicilio fiscal de la Asociación, del profesionista radicado en Quintana Roo. Para consultores foráneos se requiere la firma autógrafa enviada por medio del servicio de mensajería.
+              <strong>📍 10. Firmas Autógrafas (DP, CP, RP, EE, CA):</strong> Se requiere la firma autógrafa y presencial en el domicilio fiscal de la Asociación, del PRO radicado en Quintana Roo . Para consultores foráneos se requiere la firma autógrafa enviada por medio del servicio de mensajería .
             </div>
           </div>
           <div>
             <div class="alert-box" style="margin-top:0;">
-              <strong>🗄️ 11. Base de Datos (coordinador de administración, analista administrativo contable, coordinador de proyectos, responsable del proyecto):</strong><br>
-              Integra el contrato a la Base de Datos de Control de Contratos para dar seguimiento estricto a las políticas operativas 12, 13 y 14.
+              <strong>🗄️ 11. Base de Datos (CA, AAC, CP, RP):</strong><br>
+              Integra el contrato a la Base de Datos de Control de Contratos para dar seguimiento estricto a las políticas operativas 12, 13 y 14 .
             </div>
             <div style="font-size: 0.8rem; color: var(--muted); padding: 10px; border-left: 3px solid var(--border); margin-top: 10px;">
-              💡 <strong>Notas al pie:</strong> Una vez que se tenga el contrato se compartirá con el profesionista para que pueda revisarlo y hacer comentarios. El coordinador de administración avisará a la directora de programas y al coordinador de proyectos once reciba el contrato con firma autógrafa.
+              💡 <strong>Notas al pie:</strong> Una vez que se tenga el contrato se compartirá con el PRO para que pueda revisarlo y hacer comentarios . El CA avisará a la DP y al CP una vez que reciba el contrato con firma autógrafa .
             </div>
           </div>
         </div>
       </div>
 
-      <div class="step-card" id="politica-12-13">
+      <!-- Políticas 12, 13 -->
+      <div class="step-card">
         <span class="badge">Políticas 12 - 13 · Ciclo de Pagos y Plataforma SURF</span>
         <div class="grid-two">
           <div>
             <h3>Solicitudes y Cierre de Calendario Bancario</h3>
-            <p style="color: var(--muted); margin-top:0;"><strong>12. (responsable del proyecto, directora de programas):</strong> Solicita el pago condicionado a la entrega de un producto o servicio a través del SURF que debe incluir la factura o recibo deducible y la carta de satisfacción técnica firmada por el responsable del proyecto y por directora de programas. Enlace oficial de acceso:
-              <br><a href="http://189.206.164.249:9083/Siankaan-0.1/security/login" target="_blank" style="color: var(--pcp-blue); font-weight:700; text-decoration:none; border-bottom: 1px solid var(--pcp-blue)">http://189.206.164.249:9083/Siankaan-0.1/security/login</a>.
+            <p style="color: var(--muted); margin-top:0;"><strong>12. (RP, DP):</strong> Solicita el pago condicionado a la entrega de un producto o servicio a través del SURF que debe incluir la factura o recibo deducible y la carta de satisfacción técnica firmada por el RP y por DP . Enlace oficial de acceso:
+              <br><a href="http://189.206.164.249:9083/Siankaan-0.1/security/login" target="_blank" style="color: var(--pcp-blue); font-weight:700; text-decoration:none; border-bottom: 1px solid var(--pcp-blue)">http://189.206.164.249:9083/Siankaan-0.1/security/login</a> .
             </p>
-            <p style="color: var(--muted);"><strong>13. Dispersión (director ejecutivo, coordinador de administración, analista administrativo contable, asistente de la dirección):</strong> Realizan el pago al profesionista o para la adquisición de bienes y servicios los <strong>jueves o viernes</strong> de cada semana, siempre que la solicitud se haya hecho a más tardar el <strong>martes inmediato anterior</strong> y el analista administrativo contable verifique la factura conforme al contrato. El analista administrativo contable y/o el coordinador de administración suben los pagos a los portales bancarios para su ejecución mancomunada por parte del director ejecutivo.</p>
+            <p style="color: var(--muted);"><strong>13. Dispersión (DE, CA, AAC, AD):</strong> Realizan el pago al PRO o para la adquisición de bienes y servicios los <strong>jueves o viernes</strong> de cada semana, siempre que la solicitud se haya hecho a más tardar el <strong>martes inmediato anterior</strong> y el AAC verifique la factura conforme al contrato . El AAC y/o el CA suben los pagos a los portales bancarios para su ejecución mancomunada por parte del DE .</p>
           </div>
           <div>
             <div class="alert-box" style="margin-top:0; background: #fff5f5; border-color: #fca5a5; color: #991b1b;">
               <strong>🔒 Límite Bancario Efectivo y Cuentas ($2,000):</strong><br>
-              Todo pago mayor a $2,000 se realizará única y exclusivamente a una cuenta bancaria a nombre del emisor de la factura correspondiente. No se harán reembolsos que incumplan esto. <strong>No se podrán fraccionar las facturas mayores a $2,000 pesos</strong>.
+              Todo pago mayor a $2,000 se realizará única y exclusivamente a una cuenta bancaria a nombre del emisor de la factura correspondiente . No se harán reembolsos que incumplan esto . <strong>No se podrán fraccionar las facturas mayores a $2,000 pesos</strong> .
             </div>
             <div class="alert-box">
-              <strong>⏱️ Calendario SURF:</strong> Los miércoles aparecerá en el SURF si está rechazada o aceptada. En caso de rechazo se especificará el motivo que deberá ser solventado el mismo día.
+              <strong>⏱️ Calendario SURF:</strong> Los miércoles aparecerá en el SURF si está rechazada o aceptada . En caso de rechazo se especificará el motivo que deberá ser solventado el mismo día .
             </div>
           </div>
         </div>
         
+        <!-- Tarjeta de Crédito Institucional y Reglas Viáticos Básicos -->
         <div style="margin-top: 20px; border-top: 1px dashed var(--border); padding-top: 20px;" class="grid-two">
           <div>
             <h4>💳 Uso de Tarjeta de Crédito Institucional</h4>
-            <p style="font-size: 0.88rem; color: var(--muted); margin: 0;">Deberá hacerlo la asistente de la dirección, previa autorización por escrito del director ejecutivo, con base en la solicitud en SURF, anexando Formato de pago con TC y una guía de pasos para la aplicación en el portal del proveedor. Los pagos con otras tarjetas de crédito sólo podrán hacerse previa autorización expresa, por escrito de la directora de programas, o el coordinador de administración y el director ejecutivo. En caso de ser reembolso, se necesita contar con las facturas para realizar el pago correspondiente.</p>
+            <p style="font-size: 0.88rem; color: var(--muted); margin: 0;">Deberá hacerlo la AD, previa autorización por escrito del DE, con base en la solicitud en SURF, anexando Formato de pago con TC y una guía de pasos para la aplicación en el portal del proveedor . Los pagos con otras tarjetas de crédito sólo podrán hacerse previa autorización expresa, por escrito de la DP, o el CA y el DE . En caso de ser reembolso, se necesita contar con las facturas para realizar el pago correspondiente .</p>
           </div>
           <div>
             <h4>✈️ Comprobación General y Requisitos</h4>
             <p style="font-size: 0.88rem; color: var(--muted); margin: 0;">
-              • Los gastos de viaje deben ajustarse al tabulador.<br>
-              • Alimentos en SURF requieren incluir itinerario de actividades.<br>
-              • Hospedaje requiere incluir reservación en SURF (excepto hoteles en la tabla o con convenio).<br>
-              • Plazo máximo de comprobación: <strong>7 días naturales</strong> tras concluir la actividad. No se aprobarán recursos adicionales hasta comprobar el anterior.
+              • Los gastos de viaje deben ajustarse al tabulador .<br>
+              • Alimentos en SURF requieren incluir itinerario de actividades .<br>
+              • Hospedaje requiere incluir reservación en SURF (excepto hoteles en la tabla o con convenio) .<br>
+              • Plazo máximo de comprobación: <strong>7 días naturales</strong> tras concluir la actividad. No se aprobarán recursos adicionales hasta comprobar el anterior .
             </p>
           </div>
         </div>
       </div>
 
-      <div class="step-card" id="politica-14-16">
+      <!-- Políticas 14, 15, 16 -->
+      <div class="step-card">
         <span class="badge">Políticas 14 - 16 · Adquisiciones y Combustible</span>
         <div class="grid-two">
           <div>
             <h3>Filtro de Cotización de Bienes y Servicios</h3>
-            <p style="color: var(--muted); margin-top: 0;"><strong>14. (director ejecutivo, directora de programas, coordinador de administración, coordinador de proyectos, responsable del proyecto, analista administrativo contable, enlace externo, asistente de la dirección, coordinadora de desarrollo institucional):</strong> Solicita dos cotizaciones para la adquisición de un bien o servicio con base en los TDR, cuando aplique (ejemplo: compra de equipos de cómputo, mobiliario, talleres, trabajo en campo). Las 2 cotizaciones deben ser comparables entre sí y del mismo bien.</p>
-            <p style="color: var(--muted);"><strong>15. Tramitación:</strong> Solicita el pago del bien o servicio que mejor cumple con las condiciones técnicas y de precio, justificándolo adecuadamente a través del SURF y con el visto bueno de la directora de programas. Envía un correo al analista administrativo contable con la carátula de estado de cuenta y datos fiscales del proveedor para realizar el alta en el SURF.</p>
-            <p style="color: var(--muted);"><strong>16. Execution:</strong> Realizan el pago bajo las condiciones estipuladas en la política operativa 13.</p>
-
-            <details style="margin-top: 14px;">
-              <summary>🗺️ Ver Diagrama de Flujo: Adquisición de Bienes y Servicios</summary>
-              <div class="dropdown-content">
-                <div class="diagram-container">
-                  <img src="diagrama_pag7.jpg" alt="Flujograma de Adquisición de bienes y servicios">
-                </div>
-              </div>
-            </details>
+            <p style="color: var(--muted); margin-top: 0;"><strong>14. (DE, DP, CA, CP, RP, AAC, EE, AD, CDI):</strong> Solicita dos cotizaciones para la adquisición de un bien o servicio con base en los TDR, cuando aplique (ejemplo: compra de equipos de cómputo, mobiliario, talleres, trabajo en campo) . Las 2 cotizaciones deben ser comparables entre sí y del mismo bien .</p>
+            <p style="color: var(--muted);"><strong>15. Tramitación:</strong> Solicita el pago del bien o servicio que mejor cumple con las condiciones técnicas y de precio, justificándolo adecuadamente a través del SURF y con el visto bueno de la DP . Envía un correo al AAC con la carátula de estado de cuenta y datos fiscales del proveedor para realizar el alta en el SURF .</p>
+            <p style="color: var(--muted);"><strong>16. Ejecución:</strong> Realizan el pago bajo las condiciones estipuladas en la política operativa 13 .</p>
           </div>
           <div>
             <div class="info-box" style="margin-top:0; background: #f0fdf4; border-color: #bbf7d0; color: #166534;">
               <strong>⛽ Regla para Carga de Combustible:</strong><br>
-              La gasolina se dispersará en las tarjetas correspondientes que el coordinador de administración o el analista administrativo contable entreguen. La dispersión de gasolina se realizará al momento de la entrega del vehículo siempre y cuando ya se cuente con la SURF correspondiente.
-              <br><br><small><strong>Excepción:</strong> Para casos específicos podrá haber excepción en la dispersión a través de las tarjetas; en esos casos, podrá solicitarse reembolso siempre y cuando el pago se realice con tarjeta de crédito/débito y se tenga la factura correspondiente.</small>
+              La gasolina se dispersará en las tarjetas correspondientes que el CA o el AAC entreguen . La dispersión de gasolina se realizará al momento de la entrega del vehículo siempre y cuando ya se cuente con la SURF correspondiente .
+              <br><br><small><strong>Excepción:</strong> Para casos específicos podrá haber excepción en la dispersión a través de las tarjetas; en esos casos, podrá solicitarse reembolso siempre y cuando el pago se realice con tarjeta de crédito/débito y se tenga la factura correspondiente .</small>
             </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- SECCIÓN: DIAGRAMAS DE FLUJO -->
+    <section id="diagramas">
+      <h2>Diagramas de Flujo de Procesos</h2>
+      <p style="color: var(--muted); margin-top:-10px; margin-bottom:24px;">Espacios designados para las láminas gráficas del proceso institucional.</p>
+      
+      <div class="diagram-container">
+  <h4 style="margin: 0 0 12px 0; color: var(--pcp-blue); font-weight: 700;">Flujo de Contratación de Prestadores de Servicios (PRO)</h4>
+  <img src="diagrama_pag6.jpg" alt="Flujograma de Contratación" style="max-width: 100%; height: auto; border-radius: 12px; box-shadow: var(--shadow-md); background-color: white;">
+</div>
+      
+      <div class="diagram-container">
+  <h4 style="margin: 0 0 12px 0; color: var(--pcp-blue); font-weight: 700;">Flujo de Contratación de Prestadores de Servicios</h4>
+  <img src="diagrama_pag7.jpg" alt="Flujograma de Adquisición de bienes y servicios" style="max-width: 100%; height: auto; border-radius: 12px; box-shadow: var(--shadow-md); background-color: white;">
+</div>
+
+    <!-- SECCIÓN: TABULADORES -->
     <section id="tabuladores">
       <h2>Tabulador Oficial de Viajes y Viáticos</h2>
-      <p style="color: var(--muted); margin-top:-10px;">Límites máximos de viáticos y transporte aprobados para comisiones oficiales.</p>
+      <p style="color: var(--muted); margin-top:-10px;">Límites máximos de viáticos y transporte aprobados para comisiones oficiales .</p>
       
+      <!-- Viáticos Alimentos -->
       <h4>🍔 Alimentos</h4>
       <table>
         <thead>
@@ -654,12 +632,13 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td>Desayuno</td><td>$200.00 (Doscientos pesos 00/100 MXN)</td></tr>
-          <tr><td>Comida</td><td>$200.00 (Doscientos pesos 00/100 MXN)</td></tr>
-          <tr><td>Cena</td><td>$200.00 (Doscientos pesos 00/100 MXN)</td></tr>
+          <tr><td>Desayuno</td><td>$200.00 (Doscientos pesos 00/100 MXN) </td></tr>
+          <tr><td>Comida</td><td>$200.00 (Doscientos pesos 00/100 MXN) </td></tr>
+          <tr><td>Cena</td><td>$200.00 (Doscientos pesos 00/100 MXN) </td></tr>
         </tbody>
       </table>
 
+      <!-- Viáticos Hospedaje -->
       <h4 style="margin-top: 24px;">🏨 Hospedaje (Habitación doble)</h4>
       <table>
         <thead>
@@ -669,17 +648,18 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td>Cancún</td><td>$1,200.00 (Mil doscientos pesos 00/100 MXN)</td></tr>
-          <tr><td>Playa del Carmen</td><td>$1,200.00 (Mil doscientos pesos 00/100 MXN)</td></tr>
-          <tr><td>Tulum (El hotelito)</td><td>$1,200.00 (Mil doscientos pesos 00/100 MXN)</td></tr>
-          <tr><td>Felipe Carrillo Puerto (Turquesa Maya)</td><td>$800.00 (Ochocientos pesos 00/100 MXN)</td></tr>
-          <tr><td>Felipe Carrillo Puerto (Ceiba)</td><td>$700.00 (Setecientos pesos 00/100 MXN)</td></tr>
-          <tr><td>Felipe Carrillo Puerto (Esquivel)</td><td>$750.00 (Setecientos cincuenta pesos 00/100 MXN)</td></tr>
-          <tr><td>Chetumal</td><td>$750.00 (Setecientos cincuenta pesos 00/100 MXN)</td></tr>
-          <tr><td>Xpujil</td><td>$600.00 (Seiscientos pesos 00/100 MXN)</td></tr>
+          <tr><td>Cancún</td><td>$1,200.00 (Mil doscientos pesos 00/100 MXN) </td></tr>
+          <tr><td>Playa del Carmen</td><td>$1,200.00 (Mil doscientos pesos 00/100 MXN) </td></tr>
+          <tr><td>Tulum (El hotelito)</td><td>$1,200.00 (Mil doscientos pesos 00/100 MXN) </td></tr>
+          <tr><td>Felipe Carrillo Puerto (Turquesa Maya)</td><td>$800.00 (Ochocientos pesos 00/100 MXN) </td></tr>
+          <tr><td>Felipe Carrillo Puerto (Ceiba)</td><td>$700.00 (Setecientos pesos 00/100 MXN) </td></tr>
+          <tr><td>Felipe Carrillo Puerto (Esquivel)</td><td>$750.00 (Setecientos cincuenta pesos 00/100 MXN) </td></tr>
+          <tr><td>Chetumal</td><td>$750.00 (Setecientos cincuenta pesos 00/100 MXN) </td></tr>
+          <tr><td>Xpujil</td><td>$600.00 (Seiscientos pesos 00/100 MXN) </td></tr>
         </tbody>
       </table>
 
+      <!-- Tabla Asignación Gasolina -->
       <h4 style="margin-top: 24px;">⛽ Asignación de Combustible en Litros (Viaje Sencillo)</h4>
       <table>
         <thead>
@@ -691,16 +671,17 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td>Playa del Carmen</td><td>6 Litros</td><td>7 Litros</td><td>5 Litros</td></tr>
-          <tr><td>Tulum</td><td>11 Litros</td><td>12 Litros</td><td>9 Litros</td></tr>
-          <tr><td>Felipe Carrillo Puerto</td><td>18 Litros</td><td>20 Litros</td><td>15 Litros</td></tr>
-          <tr><td>Chetumal</td><td>30 Litros</td><td>34 Litros</td><td>24 Litros</td></tr>
-          <tr><td>Xpujil</td><td>36 Litros</td><td>40 Litros</td><td>29 Litros</td></tr>
-          <tr><td>Mérida</td><td>25 Litros</td><td>28 Litros</td><td>20 Litros</td></tr>
-          <tr><td>Campeche</td><td>37 Litros</td><td>42 Litros</td><td>30 Litros</td></tr>
+          <tr><td>Playa del Carmen</td><td>6 Litros </td><td>7 Litros </td><td>5 Litros </td></tr>
+          <tr><td>Tulum</td><td>11 Litros </td><td>12 Litros </td><td>9 Litros </td></tr>
+          <tr><td>Felipe Carrillo Puerto</td><td>18 Litros </td><td>20 Litros </td><td>15 Litros </td></tr>
+          <tr><td>Chetumal</td><td>30 Litros </td><td>34 Litros </td><td>24 Litros </td></tr>
+          <tr><td>Xpujil</td><td>36 Litros </td><td>40 Litros </td><td>29 Litros </td></tr>
+          <tr><td>Mérida</td><td>25 Litros </td><td>28 Litros </td><td>20 Litros </td></tr>
+          <tr><td>Campeche</td><td>37 Litros </td><td>42 Litros </td><td>30 Litros </td></tr>
         </tbody>
       </table>
 
+      <!-- Tabla Taxis e Info Aérea -->
       <h4 style="margin-top: 24px;">🚖 Servicios de Taxi y Transporte Aéreo</h4>
       <table>
         <thead>
@@ -710,36 +691,38 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td>Aeropuerto - Hotel</td><td>$600.00 (Seiscientos pesos 00/100 MXN)</td></tr>
-          <tr><td>Hotel - Aeropuerto</td><td>$300.00 (Trescientos pesos 00/100 MXN)</td></tr>
+          <tr><td>Aeropuerto - Hotel</td><td>$600.00 (Seiscientos pesos 00/100 MXN) </td></tr>
+          <tr><td>Hotel - Aeropuerto</td><td>$300.00 (Trescientos pesos 00/100 MXN) </td></tr>
         </tbody>
       </table>
 
       <div class="info-box" style="margin-top: 16px;">
-        <strong>✈️ Políticas de Compra Aérea:</strong> Los boletos de avión deberán comprarse en la aerolínea que ofrezca la tarifa más económica posible, de acuerdo con su disponibilidad de fechas y horarios convenientes, y únicamente en clase económica o turista. No se reembolsarán gastos derivados de cambios, cancelaciones, pérdida de vuelos, o exceso de equipaje que no estén plenamente justificados en el marco de los objetivos de trabajo del viaje.
+        <strong>✈️ Políticas de Compra Aérea:</strong> Los boletos de avión deberán comprarse en la aerolínea que ofrezca la tarifa más económica posible, de acuerdo con su disponibilidad de fechas y horarios convenientes, y únicamente en clase económica o turista . No se reembolsarán gastos derivados de cambios, cancelaciones, pérdida de vuelos, o exceso de equipaje que no estén plenamente justificados en el marco de los objetivos de trabajo del viaje .
       </div>
 
       <div class="alert-box" style="background: #fff5f5; border-color: #fca5a5; color: #991b1b; margin-top: 16px;">
         <strong>🚫 Gastos No Permitidos ni Reembolsables bajo ningún supuesto:</strong><br>
-        Bebidas alcohólicas • Alimentos o bebidas que no se justifiquen en función de la actividad profesional realizada • Artículos de uso personal, de higiene y entretenimiento • Multas y sanciones económicas impuestas por las autoridades • Gastos y deducibles no cubiertos por el seguro de los vehículos derivados del uso inapropiado de los mismos, consumo de alcohol y/o drogas, negligencia, falta de licencia de conducir, y otros • Gastos por trámites migratorios personales, emisión de pasaportes, visas, licencias de conducir, entre otros • Gasolina pagada en efectivo • Gastos propios mayores a $2,000.00 M.N. pagados en efectivo • Propinas • Cualquier gasto no relacionado directamente con la actividad profesional o que no cumpla con lo establecido en el Proceso Administrativo para la Execution de Proyectos y otras políticas o disposiciones de la Asociación.
+        Bebidas alcohólicas • Alimentos o bebidas que no se justifiquen en función de la actividad profesional realizada • Artículos de uso personal, de higiene y entretenimiento • Multas y sanciones económicas impuestas por las autoridades • Gastos y deducibles no cubiertos por el seguro de los vehículos derivados del uso inapropiado de los mismos, consumo de alcohol y/o drogas, negligencia, falta de licencia de conducir, y otros • Gastos por trámites migratorios personales, emisión de pasaportes, visas, licencias de conducir, entre otros • Gasolina pagada en efectivo • Gastos propios mayores a $2,000.00 M.N. pagados en efectivo • Propinas • Cualquier gasto no relacionado directamente con la actividad profesional o que no cumpla con lo establecido en el Proceso Administrativo para la Ejecución de Proyectos y otras políticas o disposiciones de la Asociación .
       </div>
     </section>
 
+    <!-- SECCIÓN: FACTURACIÓN -->
     <section id="facturacion">
       <h2>Datos Fiscales Institucionales</h2>
       <p style="color: var(--muted); margin-top:-10px; margin-bottom:24px;">Use esta información exacta al requerir comprobantes fiscales a proveedores del proyecto:</p>
       
       <div class="fiscal-grid">
-        <div class="fiscal-card"><strong>Razón Social:</strong><br>PRO CONSERVACION PENINSULAR A.C.</div>
-        <div class="fiscal-card"><strong>RFC:</strong><br>PCP180523FK2</div>
-        <div class="fiscal-card"><strong>Correo Electrónico:</strong><br>Correo electrónico propio</div>
+        <div class="fiscal-card"><strong>Razón Social:</strong><br>PRO CONSERVACION PENINSULAR A.C. </div>
+        <div class="fiscal-card"><strong>RFC:</strong><br>PCP180523FK2 </div>
+        <div class="fiscal-card"><strong>Correo Electrónico:</strong><br>Correo electrónico propio </div>
       </div>
       
       <div class="info-box" style="margin-top: 20px;">
-        <strong>📍 Domicilio Fiscal Autorizado:</strong> Calle Fuego, Manzana 10, Lote 2, Supermanzana 4, Cancún, Municipio de Benito Juárez, Quintana Roo, México. Código Postal 77500.
+        <strong>📍 Domicilio Fiscal Autorizado:</strong> Calle Fuego, Manzana 10, Lote 2, Supermanzana 4, Cancún, Municipio de Benito Juárez, Quintana Roo, México. Código Postal 77500 .
       </div>
     </section>
 
+    <!-- SECCIÓN: FORMATOS ANEXOS -->
     <section id="anexos">
       <h2>Formatos y Anexos de Control Interno</h2>
       <p style="color: var(--muted); margin-top:-10px; margin-bottom:24px;">Haga clic en el elemento para redirigirse al almacén digital de plantillas institucionales oficiales.</p>
@@ -749,7 +732,7 @@
           <div>
             <strong style="display:block; color: #0f172a; font-size: 1.1rem;">📂 Repositorio Único de Formatos PCP</strong>
             <small style="color: var(--muted); font-size: 0.85rem; display:block; margin-top: 4px;">
-              Incluye las siguientes plantillas: 1. TDR • 2. Propuesta Técnico-económica • 3. Acta de evaluación de candidatos • 4. Contratos (Convenio de colaboración, contrato de prestación de servicios profesionales, contrato de compraventa, contrato individual de trabajo) • 5. Base de Datos de control de contratos • 6. Carta de satisfacción técnica.
+              Incluye las siguientes plantillas: 1. TDR • 2. Propuesta Técnico-económica • 3. Acta de evaluación de candidatos • 4. Contratos (Convenio de colaboración, contrato de prestación de servicios profesionales, contrato de compraventa, contrato individual de trabajo) • 5. Base de Datos de control de contratos • 6. Carta de satisfacción técnica .
             </small>
           </div>
           <a href="https://amigosdesiankaan-my.sharepoint.com/:f:/g/personal/administracion_amigosdesiankaan_org/Erwy97GZawhAvdtfEL2d0e4BzdOutzJQVKYVZkSefY9yDw?e=3TqQbc" target="_blank" class="btn-download">Abrir Sharepoint</a> 
